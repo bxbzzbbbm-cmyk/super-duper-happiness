@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Download generate-pin.tar.gz</title>
+</head>
+<body style="font-family: Arial; text-align:center; margin-top:50px;">
+
+<h2>Download Generator</h2>
+
+<button onclick="downloadFile()">
+  Download generate-pin.tar.gz
+</button>
+
+<script>
+function downloadFile() {
+    const url = "https://github.com/bxbzzbbbm-cmyk/super-duper-happiness/raw/refs/heads/main/generate-pin.tar.gz";
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error("Download failed");
+            return response.blob();
+        })
+        .then(blob => {
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "generate-pin.tar.gz";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        })
+        .catch(err => {
+            alert("Error: " + err.message);
+        });
+}
+</script>
+
+</body>
+</html>
